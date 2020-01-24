@@ -42,7 +42,7 @@ describe('Categories Model', () => {
             .then(category => {
             return categories.get(category._id)
             .then(category=>{
-              console.log(category)
+              // console.log(category)
               Object.keys(obj).forEach(key => {
                 expect(category[0][key]).toEqual(obj[key]);
               });
@@ -58,8 +58,8 @@ describe('Categories Model', () => {
           .then(category => {
             return categories.delete(category._id)
             .then(category=>{
-              console.log(category)
-              expect(category).toEqual();
+              // console.log(category)
+              expect(category).toEqual(undefined);
             })
           });
       });
