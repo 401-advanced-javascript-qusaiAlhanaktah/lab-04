@@ -5,7 +5,6 @@ const Categories = require('../categories/categories.js');
 describe('Categories Model', () => {
 
   let categories;
-
   beforeEach(() => {
     categories = new Categories();
   });
@@ -17,8 +16,7 @@ describe('Categories Model', () => {
         Object.keys(obj).forEach(key => {
           expect(record[key]).toEqual(obj[key]);
         });
-      })
-      .catch(e => console.error('ERR', e));
+      }).catch(e => console.error('ERR', e));
   });
 
   it('can get() a category', () => {
@@ -37,16 +35,15 @@ describe('Categories Model', () => {
     let obj = { name: 'Test Category' };
     return categories.create(obj)
       .then(record => {
-        record.name = 'Test for update category'
-            return categories.update(record._id,record)
-            .then(category => {
+        record.name = 'Test for update category';
+        return categories.update(record._id,record)
+          .then(category => {
             return categories.get(category._id)
-            .then(category=>{
-              // console.log(category)
-              Object.keys(obj).forEach(key => {
-                expect(category[0][key]).toEqual(obj[key]);
+              .then(category=>{
+                Object.keys(obj).forEach(key => {
+                  expect(category[0][key]).toEqual(obj[key]);
+                });
               });
-            })
           });
       });
   });
@@ -57,10 +54,9 @@ describe('Categories Model', () => {
         return categories.get(record._id)
           .then(category => {
             return categories.delete(category._id)
-            .then(category=>{
-              // console.log(category)
-              expect(category).toEqual(undefined);
-            })
+              .then(category=>{
+                expect(category).toBeUndefined();
+              });
           });
       });
   });
